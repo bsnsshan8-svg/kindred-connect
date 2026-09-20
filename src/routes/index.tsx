@@ -1,19 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, Brain, CheckCircle2, Clock3, GraduationCap, HeartHandshake, ShieldCheck, Star, Video } from "lucide-react";
+import { ArrowRight, Award, Brain, CheckCircle2, Clock3, GraduationCap, HeartHandshake, MapPin, ShieldCheck, Star, Video } from "lucide-react";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+  component: Home,
+  head: () => ({
+    meta: [
+      { title: "Dr. Hirra Hussain | Psychiatrist in Rawalpindi" },
+      { name: "description", content: "Psychiatric consultation with Dr. Hirra Hussain, MBBS, FCPS (Psychiatry), MRCPsych. In-person care in Rawalpindi and online video consultation." },
+      { property: "og:title", content: "Dr. Hirra Hussain | Psychiatrist in Rawalpindi" },
+      { property: "og:description", content: "Confidential psychiatric consultation with in-person and online options." },
+      { property: "og:type", content: "website" },
+    ],
+  }),
+});
 
-const doctorImage =
-  "https://d1t78adged64l7.cloudfront.net/images/profile-pics/doctors/1764761304-762b6c08-6d27-4989-a7a8-f1b4fd6793bdremovalaipreview-1.webp?t=1764761306";
+const doctorImage = "https://d1t78adged64l7.cloudfront.net/images/profile-pics/doctors/1764761304-762b6c08-6d27-4989-a7a8-f1b4fd6793bdremovalaipreview-1.webp?t=1764761306";
 
 const services = [
-  { title: "Anxiety & Worry", text: "Assessment and personalized management for persistent anxiety, excessive worry and related symptoms." },
-  { title: "Depression", text: "Compassionate psychiatric assessment and evidence-informed treatment planning for depression." },
-  { title: "Bipolar Disorder", text: "Ongoing assessment and management designed around your symptoms, history and goals." },
-  { title: "Mental Wellness", text: "A confidential space to understand what you are experiencing and decide on practical next steps." },
-  { title: "Psychiatric Consultation", text: "Detailed evaluation, diagnosis, treatment planning and follow-up care." },
-  { title: "Online Consultation", text: "Private video consultations from the comfort of your home, where clinically appropriate." },
-];
+  ["Anxiety Disorders Treatment", "Assessment and management for persistent anxiety, excessive worry and related symptoms."],
+  ["Depression Treatment", "Psychiatric assessment and individualized treatment planning for depression."],
+  ["Bipolar Disorder Treatment", "Assessment and ongoing management shaped around symptoms, history and individual needs."],
+  ["Mental Health Treatment", "A confidential consultation to understand concerns and discuss appropriate care."],
+  ["Psychiatric Consultation & Management", "Detailed psychiatric evaluation, treatment planning and follow-up care."],
+  ["Online Video Consultation", "A private video consultation option for patients who prefer remote care."],
+] as const;
 
 function Home() {
   return (
@@ -21,26 +31,24 @@ function Home() {
       <section className="hero-section">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <div className="eyebrow"><ShieldCheck size={16} /> PMDC Verified Psychiatrist</div>
-            <h1>Thoughtful psychiatric care for a <span>healthier mind.</span></h1>
-            <p className="hero-lead">
-              Dr. Hirra Hussain provides confidential, compassionate psychiatric consultations with a focus on understanding the whole person.
-            </p>
+            <p className="eyebrow"><ShieldCheck size={16} aria-hidden="true" /> PMDC Verified Psychiatrist</p>
+            <h1>Psychiatric care that begins with <span>being heard.</span></h1>
+            <p className="hero-lead">Dr. Hirra Hussain provides confidential psychiatric consultations for people seeking thoughtful assessment, clear guidance and individualized care.</p>
             <div className="hero-actions">
               <Link to="/appointments" className="btn btn-primary">Book an Appointment <ArrowRight size={18} /></Link>
-              <Link to="/about" className="btn btn-secondary">Meet Dr. Hirra</Link>
+              <a href="tel:0518151800" className="btn btn-secondary">Call 0518 151 800</a>
             </div>
-            <div className="trust-row">
-              <div><strong>6+</strong><span>Years of experience</span></div>
-              <div><strong>4.5/5</strong><span>Patient rating</span></div>
-              <div><strong>32</strong><span>Verified reviews</span></div>
+            <div className="trust-row" aria-label="Practice highlights">
+              <div><strong>6 Years</strong><span>Experience</span></div>
+              <div><strong>4.5 / 5</strong><span>Patient rating</span></div>
+              <div><strong>32</strong><span>Reviews</span></div>
             </div>
           </div>
 
           <div className="doctor-hero-card">
             <div className="doctor-photo-wrap">
-              <img src={doctorImage} alt="Dr. Hirra Hussain, Psychiatrist" />
-              <div className="verified-badge"><CheckCircle2 size={16} /> PMDC Verified</div>
+              <img src={doctorImage} alt="Dr. Hirra Hussain, psychiatrist" fetchPriority="high" />
+              <div className="verified-badge"><CheckCircle2 size={16} aria-hidden="true" /> PMDC Verified</div>
             </div>
             <div className="doctor-card-content">
               <p className="small-label">PSYCHIATRIST</p>
@@ -54,28 +62,28 @@ function Home() {
 
       <section className="stats-strip">
         <div className="container stats-grid">
-          <div><Award size={24}/><div><strong>6+ Years</strong><span>Clinical experience</span></div></div>
-          <div><Star size={24}/><div><strong>4.5 / 5</strong><span>Patient rating</span></div></div>
-          <div><HeartHandshake size={24}/><div><strong>90%</strong><span>Patient satisfaction</span></div></div>
-          <div><Video size={24}/><div><strong>Video Consult</strong><span>Available online</span></div></div>
+          <div><Award size={23} aria-hidden="true" /><div><strong>6 Years</strong><span>Clinical experience</span></div></div>
+          <div><Star size={23} aria-hidden="true" /><div><strong>4.5 / 5</strong><span>Patient rating</span></div></div>
+          <div><HeartHandshake size={23} aria-hidden="true" /><div><strong>90%</strong><span>Satisfied patients</span></div></div>
+          <div><Video size={23} aria-hidden="true" /><div><strong>Video consult</strong><span>Online option</span></div></div>
         </div>
       </section>
 
-      <section className="section" id="services">
+      <section className="section">
         <div className="container">
           <div className="section-heading centered">
             <p className="kicker">AREAS OF CARE</p>
-            <h2>Support that starts with listening.</h2>
-            <p>Every consultation begins with understanding your concerns, history and goals before discussing appropriate treatment options.</p>
+            <h2>Support built around your concerns.</h2>
+            <p>Explore the psychiatric services available with Dr. Hirra Hussain. Each consultation starts with understanding what you are experiencing.</p>
           </div>
           <div className="service-grid">
-            {services.map((service, index) => (
-              <article className="service-card" key={service.title}>
+            {services.map(([title, text], index) => (
+              <article className="service-card" key={title}>
                 <div className="service-number">0{index + 1}</div>
-                <div className="service-icon"><Brain size={22} /></div>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-                <Link to="/services" className="text-link">Learn more <ArrowRight size={16}/></Link>
+                <div className="service-icon"><Brain size={22} aria-hidden="true" /></div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <Link to="/services" className="text-link">Explore services <ArrowRight size={16} /></Link>
               </article>
             ))}
           </div>
@@ -85,33 +93,35 @@ function Home() {
       <section className="section soft-section">
         <div className="container about-preview">
           <div className="about-visual">
-            <div className="about-card"><GraduationCap size={28}/><strong>MBBS · FCPS</strong><span>Psychiatry</span></div>
-            <div className="about-card offset"><Award size={28}/><strong>MRCPsych</strong><span>Royal College of Psychiatrists, UK</span></div>
+            <div className="about-orbit" aria-hidden="true" />
+            <div className="about-card"><GraduationCap size={28} aria-hidden="true" /><strong>MBBS · FCPS</strong><span>Psychiatry</span></div>
+            <div className="about-card offset"><Award size={28} aria-hidden="true" /><strong>MRCPsych</strong><span>Royal College of Psychiatrists, UK</span></div>
           </div>
           <div className="section-heading">
-            <p className="kicker">MEET YOUR PSYCHIATRIST</p>
-            <h2>Professional care, delivered with empathy.</h2>
-            <p>Dr. Hirra Hussain is a psychiatrist with over 6 years of experience. Her approach combines careful assessment, clear communication and individualized treatment planning.</p>
+            <p className="kicker">MEET DR. HIRRA HUSSAIN</p>
+            <h2>Professional expertise with a human approach.</h2>
+            <p>Dr. Hirra Hussain is a psychiatrist with 6 years of experience. She holds MBBS, FCPS (Psychiatry) and MRCPsych qualifications from the Royal College of Psychiatrists, UK.</p>
             <div className="check-list">
-              <span><CheckCircle2 size={18}/> Confidential consultations</span>
-              <span><CheckCircle2 size={18}/> Evidence-informed treatment planning</span>
-              <span><CheckCircle2 size={18}/> In-person and online options</span>
+              <span><CheckCircle2 size={18} /> Confidential and respectful consultations</span>
+              <span><CheckCircle2 size={18} /> Individualized assessment and treatment planning</span>
+              <span><CheckCircle2 size={18} /> In-person and online consultation options</span>
             </div>
-            <Link to="/about" className="btn btn-secondary">About Dr. Hirra <ArrowRight size={18}/></Link>
+            <Link to="/about" className="btn btn-secondary">Meet the Doctor <ArrowRight size={18} /></Link>
           </div>
         </div>
       </section>
 
       <section className="section">
-        <div className="container appointment-banner">
+        <div className="container split-highlight">
           <div>
-            <p className="kicker">BOOK YOUR CONSULTATION</p>
-            <h2>Ready to take the next step?</h2>
-            <p>Choose an appointment option that works for you. Online video consultation is available every Thursday from 4:30 PM–5:30 PM.</p>
+            <p className="kicker">WHAT TO EXPECT</p>
+            <h2>A clear, private path to your consultation.</h2>
+            <p>Choose the appointment format that suits you, confirm availability by phone, and come prepared to discuss the concerns that brought you here.</p>
           </div>
-          <div className="appointment-actions">
-            <Link to="/appointments" className="btn btn-light">Book Appointment <ArrowRight size={18}/></Link>
-            <a href="tel:0518151800" className="btn btn-outline-light">Call 0518 151 800</a>
+          <div className="process-list">
+            <div><span>01</span><div><strong>Choose a format</strong><p>Online video consultation or an in-person visit at PIMH.</p></div></div>
+            <div><span>02</span><div><strong>Confirm your appointment</strong><p>Call 0518 151 800 to confirm timing and availability.</p></div></div>
+            <div><span>03</span><div><strong>Have your consultation</strong><p>Discuss your concerns privately with Dr. Hirra Hussain.</p></div></div>
           </div>
         </div>
       </section>
@@ -120,22 +130,44 @@ function Home() {
         <div className="container">
           <div className="section-heading centered">
             <p className="kicker">PATIENT FEEDBACK</p>
-            <h2>What patients say</h2>
+            <h2>Words from patients.</h2>
           </div>
           <div className="review-grid">
-            <blockquote><div className="stars">★★★★★</div><p>“Very kind, understanding and professional. Full of empathy and knowledge.”</p><cite>Verified patient · Yasmeen</cite></blockquote>
-            <blockquote><div className="stars">★★★★★</div><p>“She is very nice and kind doctor. Very helpful, and she listens to her patients without being in a hurry.”</p><cite>Verified patient · Muhammad</cite></blockquote>
+            <blockquote><div className="stars" aria-label="5 stars">★★★★★</div><p>“Very kind, understanding and professional. Full of empathy and knowledge.”</p><cite>Patient review</cite></blockquote>
+            <blockquote><div className="stars" aria-label="5 stars">★★★★★</div><p>“She is very nice and kind doctor. Very helpful, and she listens to her patients she is not in hurry at all.”</p><cite>Patient review</cite></blockquote>
           </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container location-strip">
+          <div className="location-icon"><MapPin size={25} aria-hidden="true" /></div>
+          <div><p className="kicker">IN-PERSON CARE</p><h2>Pakistan Institute of Mental Health</h2><p>Adjacent to Royal Palace Hotel, opposite Ayub Park, Main GT Road, Chaklala Cantt, Rawalpindi.</p></div>
+          <Link to="/clinic" className="btn btn-secondary">Clinic details <ArrowRight size={17} /></Link>
         </div>
       </section>
 
       <section className="section faq-section">
         <div className="container faq-grid">
-          <div className="section-heading"><p className="kicker">QUICK ANSWERS</p><h2>Before your appointment</h2><p>Simple information to help you choose the right consultation option.</p></div>
+          <div className="section-heading"><p className="kicker">FAQ</p><h2>Before you book.</h2><p>Quick answers about consultation options, timing and fees.</p><Link to="/faq" className="text-link">View all FAQs <ArrowRight size={16} /></Link></div>
           <div className="faq-list">
-            <details open><summary>What is the consultation fee?</summary><p>Online video consultation: Rs. 3,000. Pakistan Institute of Mental Health (PIMH): Rs. 2,500.</p></details>
-            <details><summary>When is online consultation available?</summary><p>Online video consultation is listed for Thursday, 4:30 PM–5:30 PM.</p></details>
-            <details><summary>Where is the in-person clinic?</summary><p>Pakistan Institute of Mental Health (PIMH), adjacent to Royal Palace Hotel, opposite Ayub Park, Main GT Road, Chaklala Cantt, Rawalpindi.</p></details>
+            <details open><summary>What is the consultation fee?</summary><p>Online video consultation: Rs. 3,000. PIMH consultation: Rs. 2,500.</p></details>
+            <details><summary>When is online consultation available?</summary><p>Thursday, 4:30 PM–5:30 PM.</p></details>
+            <details><summary>Where is the in-person clinic?</summary><p>Pakistan Institute of Mental Health, Chaklala Cantt, Rawalpindi. See the clinic page for the full address and schedule.</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container appointment-banner">
+          <div>
+            <p className="kicker">TAKE THE NEXT STEP</p>
+            <h2>Choose the consultation that fits you.</h2>
+            <p>Review the available appointment options and call to confirm availability.</p>
+          </div>
+          <div className="appointment-actions">
+            <Link to="/appointments" className="btn btn-light">View appointments <ArrowRight size={18} /></Link>
+            <a href="tel:0518151800" className="btn btn-outline-light">Call 0518 151 800</a>
           </div>
         </div>
       </section>
