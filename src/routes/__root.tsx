@@ -7,6 +7,22 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const doctorImage = "https://d1t78adged64l7.cloudfront.net/images/profile-pics/doctors/1764761304-762b6c08-6d27-4989-a7a8-f1b4fd6793bdremovalaipreview-1.webp?t=1764761306";
 
+const physicianSchema = {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "Dr. Hirra Hussain",
+  "image": doctorImage,
+  "description": "Psychiatrist providing in-person and online psychiatric consultations.",
+  "telephone": "0518151800",
+  "medicalSpecialty": "Psychiatry",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Adjacent to Royal Palace Hotel, Opposite Ayub Park, Main GT Road Chaklala Cantt",
+    "addressLocality": "Rawalpindi",
+    "addressCountry": "PK"
+  }
+};
+
 function NotFoundComponent() {
   return <div className="not-found"><p className="kicker">404</p><h1>That page is not available.</h1><p>The page you requested could not be found.</p><Link to="/" className="btn btn-primary">Return home</Link></div>;
 }
@@ -41,7 +57,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
-  return <html lang="en"><head><HeadContent /></head><body>
+  return <html lang="en"><head><HeadContent /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(physicianSchema) }} /></head><body>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <header className="site-header">
       <div className="container nav-wrap">
