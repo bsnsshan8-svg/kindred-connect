@@ -62,6 +62,11 @@ function RootShell({ children }: { children: ReactNode }) {
   const [booking, setBooking] = useState({ name: "", email: "", phone: "", service: "", message: "" });
   const whatsappNumber = "92518151800";
   const openBooking = () => { setOpen(false); setBookingOpen(true); };
+  useEffect(() => {
+    const root = document.getElementById("main-content");
+    if (!root) return;
+    return initReveal(root);
+  }, []);
   const whatsappMessage = encodeURIComponent(
     `Hello Dr. Hirra Hussain's clinic, I would like to book an appointment.
 Name: ${booking.name}
