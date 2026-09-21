@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, Brain, CheckCircle2, Clock3, GraduationCap, HeartHandshake, MapPin, ShieldCheck, Star, Video } from "lucide-react";
+import doctorVideo from "../assets/psychiatrist-hira.mp4.asset.json";
+import doctorVideoPoster from "../assets/psychiatrist-hira-poster.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -13,8 +15,6 @@ export const Route = createFileRoute("/")({
     ],
   }),
 });
-
-const doctorImage = "https://d1t78adged64l7.cloudfront.net/images/profile-pics/doctors/1764761304-762b6c08-6d27-4989-a7a8-f1b4fd6793bdremovalaipreview-1.webp?t=1764761306";
 
 const services = [
   ["Anxiety Disorders Treatment", "Assessment and management for persistent anxiety, excessive worry and related symptoms."],
@@ -47,7 +47,10 @@ function Home() {
 
           <div className="doctor-hero-card">
             <div className="doctor-photo-wrap">
-              <img src={doctorImage} alt="Dr. Hirra Hussain, psychiatrist" fetchPriority="high" />
+              <video controls playsInline preload="metadata" poster={doctorVideoPoster.url} aria-label="Video featuring Dr. Hirra Hussain">
+                <source src={doctorVideo.url} type="video/mp4" />
+                Your browser does not support video playback.
+              </video>
               <div className="verified-badge"><CheckCircle2 size={16} aria-hidden="true" /> PMDC Verified</div>
             </div>
             <div className="doctor-card-content">
