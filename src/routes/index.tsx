@@ -2,6 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, Brain, CheckCircle2, Clock3, GraduationCap, HeartHandshake, MapPin, ShieldCheck, Star, Video } from "lucide-react";
 import doctorVideo from "../assets/psychiatrist-hira.mp4.asset.json";
 import doctorVideoPoster from "../assets/psychiatrist-hira-poster.jpg.asset.json";
+import anxietyImage from "../assets/anxiety-care.jpg.asset.json";
+import bipolarImage from "../assets/bipolar-care.jpg.asset.json";
+import depressionImage from "../assets/depression-care.jpg.asset.json";
+import mentalHealthImage from "../assets/mental-health-care.jpg.asset.json";
+import psychiatricConsultationImage from "../assets/psychiatric-consultation.jpg.asset.json";
+import onlineConsultationImage from "../assets/online-consultation.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -12,17 +18,18 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Dr. Hirra Hussain | Psychiatrist in Rawalpindi" },
       { property: "og:description", content: "Confidential psychiatric consultation with in-person and online options." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
 
 const services = [
-  ["Anxiety Disorders Treatment", "Assessment and management for persistent anxiety, excessive worry and related symptoms."],
-  ["Depression Treatment", "Psychiatric assessment and individualized treatment planning for depression."],
-  ["Bipolar Disorder Treatment", "Assessment and ongoing management shaped around symptoms, history and individual needs."],
-  ["Mental Health Treatment", "A confidential consultation to understand concerns and discuss appropriate care."],
-  ["Psychiatric Consultation & Management", "Detailed psychiatric evaluation, treatment planning and follow-up care."],
-  ["Online Video Consultation", "A private video consultation option for patients who prefer remote care."],
+  ["Anxiety Disorders Treatment", "Assessment and management for persistent anxiety, excessive worry and related symptoms.", anxietyImage.url, "Person experiencing anxiety and emotional overwhelm"],
+  ["Depression Treatment", "Psychiatric assessment and individualized treatment planning for depression.", depressionImage.url, "Person sitting alone while experiencing low mood"],
+  ["Bipolar Disorder Treatment", "Assessment and ongoing management shaped around symptoms, history and individual needs.", bipolarImage.url, "Person coping with intense emotional distress"],
+  ["Mental Health Treatment", "A confidential consultation to understand concerns and discuss appropriate care.", mentalHealthImage.url, "Brain model representing mental health and new understanding"],
+  ["Psychiatric Consultation & Management", "Detailed psychiatric evaluation, treatment planning and follow-up care.", psychiatricConsultationImage.url, "Line drawing representing different paths of thought"],
+  ["Online Video Consultation", "A private video consultation option for patients who prefer remote care.", onlineConsultationImage.url, "Person at a laptop preparing for an online consultation"],
 ] as const;
 
 function Home() {
@@ -80,13 +87,10 @@ function Home() {
             <p>Explore the psychiatric services available with Dr. Hirra Hussain. Each consultation starts with understanding what you are experiencing.</p>
           </div>
           <div className="service-grid">
-            {services.map(([title, text], index) => (
+            {services.map(([title, text, image, alt], index) => (
               <article className="service-card" key={title}>
-                <div className="service-number">0{index + 1}</div>
-                <div className="service-icon"><Brain size={22} aria-hidden="true" /></div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-                <Link to="/services" className="text-link">Explore services <ArrowRight size={16} /></Link>
+                <div className="service-image"><img src={image} alt={alt} loading="lazy" /><span className="service-number">0{index + 1}</span><span className="service-icon"><Brain size={20} aria-hidden="true" /></span></div>
+                <div className="service-card-body"><h3>{title}</h3><p>{text}</p><Link to="/services" className="text-link">Explore services <ArrowRight size={16} /></Link></div>
               </article>
             ))}
           </div>

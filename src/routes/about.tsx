@@ -6,6 +6,10 @@ export const Route = createFileRoute("/about")({
   head: () => ({ meta: [
     { title: "About Dr. Hirra Hussain | Psychiatrist" },
     { name: "description", content: "Learn about Dr. Hirra Hussain, MBBS, FCPS (Psychiatry), MRCPsych, and her psychiatric consultation practice." },
+    { property: "og:title", content: "About Dr. Hirra Hussain | Psychiatrist" },
+    { property: "og:description", content: "Learn about Dr. Hirra Hussain’s qualifications, experience and approach to psychiatric care." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ]}),
 });
 

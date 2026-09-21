@@ -6,6 +6,10 @@ export const Route = createFileRoute("/faq")({
   head: () => ({ meta: [
     { title: "FAQs | Dr. Hirra Hussain" },
     { name: "description", content: "Frequently asked questions about psychiatric consultations, fees, timings and clinic location for Dr. Hirra Hussain." },
+    { property: "og:title", content: "FAQs | Dr. Hirra Hussain" },
+    { property: "og:description", content: "Answers about psychiatric consultations, fees, timings and the Rawalpindi clinic." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ]}),
 });
 

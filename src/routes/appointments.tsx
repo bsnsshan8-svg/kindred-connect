@@ -6,6 +6,10 @@ export const Route = createFileRoute("/appointments")({
   head: () => ({ meta: [
     { title: "Appointments | Dr. Hirra Hussain" },
     { name: "description", content: "View online and in-person appointment options, consultation fees, timings and booking information for Dr. Hirra Hussain." },
+    { property: "og:title", content: "Appointments | Dr. Hirra Hussain" },
+    { property: "og:description", content: "View online and in-person psychiatric appointment options, fees and timings." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ]}),
 });
 

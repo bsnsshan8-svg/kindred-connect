@@ -6,6 +6,10 @@ export const Route = createFileRoute("/clinic")({
   head: () => ({ meta: [
     { title: "Clinic | Dr. Hirra Hussain | Rawalpindi" },
     { name: "description", content: "Clinic location, hours and contact details for Dr. Hirra Hussain at Pakistan Institute of Mental Health in Rawalpindi." },
+    { property: "og:title", content: "Clinic | Dr. Hirra Hussain | Rawalpindi" },
+    { property: "og:description", content: "Find clinic location, hours and contact details in Rawalpindi." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ]}),
 });
 
