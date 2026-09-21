@@ -8,6 +8,7 @@ import depressionImage from "../assets/depression-care.jpg.asset.json";
 import mentalHealthImage from "../assets/mental-health-care.jpg.asset.json";
 import psychiatricConsultationImage from "../assets/psychiatric-consultation.jpg.asset.json";
 import onlineConsultationImage from "../assets/online-consultation.jpg.asset.json";
+import recoveryFamilySupportImage from "../assets/recovery-family-support.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -27,7 +28,7 @@ const services = [
   ["Anxiety Disorders Treatment", "Assessment and management for persistent anxiety, excessive worry and related symptoms.", anxietyImage.url, "Person experiencing anxiety and emotional overwhelm"],
   ["Depression Treatment", "Psychiatric assessment and individualized treatment planning for depression.", depressionImage.url, "Person sitting alone while experiencing low mood"],
   ["Bipolar Disorder Treatment", "Assessment and ongoing management shaped around symptoms, history and individual needs.", bipolarImage.url, "Person coping with intense emotional distress"],
-  ["Mental Health Treatment", "A confidential consultation to understand concerns and discuss appropriate care.", mentalHealthImage.url, "Brain model representing mental health and new understanding"],
+  ["Mental Health Treatment", "A confidential consultation to understand concerns and discuss appropriate care.", recoveryFamilySupportImage.url, "A person moving from emotional distress toward wellbeing and family connection"],
   ["Psychiatric Consultation & Management", "Detailed psychiatric evaluation, treatment planning and follow-up care.", psychiatricConsultationImage.url, "Line drawing representing different paths of thought"],
   ["Online Video Consultation", "A private video consultation option for patients who prefer remote care.", onlineConsultationImage.url, "Person at a laptop preparing for an online consultation"],
 ] as const;
