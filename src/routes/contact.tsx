@@ -6,6 +6,10 @@ export const Route = createFileRoute("/contact")({
   head: () => ({ meta: [
     { title: "Contact Dr. Hirra Hussain | Rawalpindi" },
     { name: "description", content: "Contact Dr. Hirra Hussain for psychiatric appointment scheduling and clinic information in Rawalpindi." },
+    { property: "og:title", content: "Contact Dr. Hirra Hussain | Rawalpindi" },
+    { property: "og:description", content: "Contact the clinic for psychiatric appointment scheduling and information." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ]}),
 });
 
