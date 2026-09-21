@@ -72,12 +72,17 @@ export function initReveal(root: HTMLElement): () => void {
     }
   };
 
-  register();
-
   const mutations = new MutationObserver(() => register());
-  mutations.observe(root, { childList: true, subtree: true });
+
+  // Start after hydration settles so added classes never fight React's markup check.
+  const start = () => {
+    register();
+    mutations.observe(root, { childList: true, subtree: true });
+  };
+  const timer = window.setTimeout(start, 350);
 
   return () => {
+    window.clearTimeout(timer);
     observer.disconnect();
     mutations.disconnect();
   };
