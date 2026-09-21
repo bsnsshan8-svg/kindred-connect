@@ -3,7 +3,6 @@ import { Outlet, Link, createRootRouteWithContext, useRouter, HeadContent, Scrip
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, CalendarCheck, Menu, Phone, X } from "lucide-react";
 import appCss from "../styles.css?url";
-import { reportRuntimeError } from "../lib/error-reporting";
 import { initReveal } from "../lib/reveal";
 
 const doctorImage = "https://d1t78adged64l7.cloudfront.net/images/profile-pics/doctors/1764761304-762b6c08-6d27-4989-a7a8-f1b4fd6793bdremovalaipreview-1.webp?t=1764761306";
@@ -31,7 +30,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => { reportRuntimeError(error, { boundary: "tanstack_root_error_component" }); }, [error]);
   return <div className="not-found"><p className="kicker">SORRY</p><h1>This page didn't load.</h1><p>Please refresh and try again.</p><button className="btn btn-primary" onClick={() => { router.invalidate(); reset(); }}>Try again</button></div>;
 }
 
