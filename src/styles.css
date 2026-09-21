@@ -44,3 +44,26 @@ img{max-width:100%;display:block}
 @media(max-width:980px){.nav-phone{display:none}.nav-links{gap:14px}.hero-grid,.about-preview,.content-grid,.faq-grid,.clinic-layout,.faq-page-grid,.split-highlight{grid-template-columns:1fr;gap:45px}.doctor-hero-card{justify-self:stretch;max-width:none}.service-grid{grid-template-columns:1fr 1fr}.appointment-banner{display:block}.appointment-actions{justify-content:flex-start;margin-top:25px}.footer-grid{grid-template-columns:1fr 1fr}.about-visual{min-height:400px}.faq-aside{position:static}.clinic-panel{min-height:400px}}
 @media(max-width:700px){.container{width:min(100% - 28px,1180px)}.nav-wrap{height:72px}.mobile-toggle{display:block}.nav-links{display:none;position:absolute;left:14px;right:14px;top:68px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}.nav-links.open{display:flex}.nav-links a{padding:9px}.nav-cta{justify-content:center}.hero-section{padding:55px 0}.hero-copy h1{font-size:45px}.hero-lead{font-size:16px}.doctor-photo-wrap{height:430px}.trust-row{gap:18px;flex-wrap:wrap}.stats-grid{grid-template-columns:1fr 1fr}.stats-grid>div{border:0}.section{padding:72px 0}.service-grid,.review-grid,.contact-grid,.booking-grid{grid-template-columns:1fr}.service-card{min-height:0}.appointment-banner{padding:34px 24px}.appointment-banner h2{font-size:31px}.footer-grid{grid-template-columns:1fr}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:8px}.about-card{left:20px;bottom:20px}.about-card.offset{right:20px;top:20px}.location-strip{grid-template-columns:1fr;gap:14px}.location-icon{width:46px;height:46px}.portrait-image{height:500px}.service-detail{display:block}.service-detail .btn{margin-top:15px}.page-hero{padding:58px 0}.page-hero h1{font-size:44px}.faq-page-list{padding:0 18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+
+/* Appointment booking modal */
+.nav-book-button { border: 0; font: inherit; cursor: pointer; }
+.booking-overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; background: rgba(10, 25, 23, .68); backdrop-filter: blur(8px); }
+.booking-modal { position: relative; width: min(680px, 100%); max-height: min(850px, 92vh); overflow-y: auto; background: #fbfaf5; border: 1px solid rgba(23,57,54,.14); padding: clamp(28px, 5vw, 48px); box-shadow: 0 30px 80px rgba(10,25,23,.25); }
+.booking-modal h2 { margin: 6px 0 10px; }
+.booking-intro { max-width: 560px; margin-bottom: 26px; color: #5d6864; }
+.booking-close { position: absolute; top: 18px; right: 18px; width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid rgba(23,57,54,.12); background: transparent; color: #173936; cursor: pointer; }
+.booking-modal form { display: grid; gap: 17px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.booking-modal label { display: grid; gap: 7px; color: #263c38; font-size: .86rem; font-weight: 600; }
+.booking-modal input, .booking-modal select, .booking-modal textarea { width: 100%; border: 1px solid #d5ddd8; background: #fff; color: #173936; padding: 13px 14px; font: inherit; outline: none; border-radius: 0; }
+.booking-modal textarea { resize: vertical; }
+.booking-modal input:focus, .booking-modal select:focus, .booking-modal textarea:focus { border-color: #173936; box-shadow: 0 0 0 3px rgba(23,57,54,.08); }
+.btn-whatsapp { width: 100%; justify-content: center; border: 0; background: #173936; color: #fff; cursor: pointer; }
+.form-note { margin: 0; font-size: .76rem; line-height: 1.55; color: #6a746f; }
+@media (max-width: 620px) {
+  .booking-overlay { padding: 12px; align-items: end; }
+  .booking-modal { max-height: 94vh; padding: 28px 20px 22px; }
+  .form-grid { grid-template-columns: 1fr; gap: 14px; }
+  .booking-close { top: 12px; right: 12px; }
+}
