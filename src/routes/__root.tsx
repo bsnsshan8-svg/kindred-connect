@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, CalendarCheck, Menu, Phone, X } from "lucide-react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { initReveal } from "../lib/reveal";
 
 const doctorImage = "https://d1t78adged64l7.cloudfront.net/images/profile-pics/doctors/1764761304-762b6c08-6d27-4989-a7a8-f1b4fd6793bdremovalaipreview-1.webp?t=1764761306";
 
@@ -61,6 +62,11 @@ function RootShell({ children }: { children: ReactNode }) {
   const [booking, setBooking] = useState({ name: "", email: "", phone: "", service: "", message: "" });
   const whatsappNumber = "92518151800";
   const openBooking = () => { setOpen(false); setBookingOpen(true); };
+  useEffect(() => {
+    const root = document.getElementById("main-content");
+    if (!root) return;
+    return initReveal(root);
+  }, []);
   const whatsappMessage = encodeURIComponent(
     `Hello Dr. Hirra Hussain's clinic, I would like to book an appointment.
 Name: ${booking.name}
