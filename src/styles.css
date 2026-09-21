@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+#lovable-badge { display: none !important; visibility: hidden !important; pointer-events: none !important; }
+
 :root{--ink:#123B3E;--ink-2:#24575A;--sage:#D9F0F1;--sage-2:#EAF7F7;--cream:#F3FAFA;--paper:#FCFEFE;--muted:#5F7274;--line:#D6E5E6;--accent:#00979E;--white:#fff;--radius:20px;--shadow:0 22px 55px rgba(0,79,83,.12)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
