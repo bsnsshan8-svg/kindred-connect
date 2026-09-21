@@ -3,7 +3,6 @@ import { ArrowRight, Brain, CheckCircle2 } from "lucide-react";
 import anxietyImage from "../assets/anxiety-care.jpg.asset.json";
 import bipolarImage from "../assets/bipolar-care.jpg.asset.json";
 import depressionImage from "../assets/depression-care.jpg.asset.json";
-import mentalHealthImage from "../assets/mental-health-care.jpg.asset.json";
 import psychiatricConsultationImage from "../assets/psychiatric-consultation.jpg.asset.json";
 import onlineConsultationImage from "../assets/online-consultation.jpg.asset.json";
 import recoveryFamilySupportImage from "../assets/recovery-family-support.png.asset.json";
