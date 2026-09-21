@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, Link, createRootRouteWithContext, useRouter, HeadContent, Scripts } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import { CalendarCheck, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, CalendarCheck, Menu, Phone, X } from "lucide-react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -57,6 +57,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [booking, setBooking] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+  const whatsappNumber = "92518151800";
+  const openBooking = () => { setOpen(false); setBookingOpen(true); };
+  const whatsappMessage = encodeURIComponent(
+    `Hello Dr. Hirra Hussain's clinic, I would like to book an appointment.
+Name: ${booking.name}
+Email: ${booking.email}
+Phone: ${booking.phone}
+Preferred service: ${booking.service || "Not specified"}
+Message: ${booking.message || "No additional message"}`
+  );
+
   return <html lang="en"><head><HeadContent /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(physicianSchema) }} /></head><body>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <header className="site-header">
@@ -77,11 +90,30 @@ function RootShell({ children }: { children: ReactNode }) {
           <Link to="/faq" activeProps={{ className: "active" }} onClick={() => setOpen(false)}>FAQ</Link>
           <Link to="/contact" activeProps={{ className: "active" }} onClick={() => setOpen(false)}>Contact</Link>
           <a href="tel:0518151800" className="nav-phone"><Phone size={16} aria-hidden="true" /> 0518 151 800</a>
-          <Link to="/appointments" className="nav-cta" onClick={() => setOpen(false)}><CalendarCheck size={16} aria-hidden="true" /> Book Now</Link>
+          <button type="button" className="nav-cta nav-book-button" onClick={openBooking}><CalendarCheck size={16} aria-hidden="true" /> Book Now</button>
         </nav>
       </div>
     </header>
     <div id="main-content">{children}</div>
+    {bookingOpen && <div className="booking-overlay" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) setBookingOpen(false); }}>
+      <section className="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+        <button type="button" className="booking-close" aria-label="Close booking form" onClick={() => setBookingOpen(false)}><X size={20} /></button>
+        <p className="kicker">APPOINTMENT REQUEST</p>
+        <h2 id="booking-title">Tell us how we can help.</h2>
+        <p className="booking-intro">Enter your details below. When you continue, WhatsApp will open with your appointment request ready to send.</p>
+        <form onSubmit={(e) => { e.preventDefault(); window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, "_blank", "noopener,noreferrer"); }}>
+          <div className="form-grid">
+            <label>Full name<input required value={booking.name} onChange={(e) => setBooking({...booking, name:e.target.value})} placeholder="Your name" /></label>
+            <label>Email<input type="email" required value={booking.email} onChange={(e) => setBooking({...booking, email:e.target.value})} placeholder="you@example.com" /></label>
+            <label>Phone number<input required value={booking.phone} onChange={(e) => setBooking({...booking, phone:e.target.value})} placeholder="03XX XXXXXXX" /></label>
+            <label>Service<select value={booking.service} onChange={(e) => setBooking({...booking, service:e.target.value})}><option value="">Select a service</option><option>Anxiety Disorders Treatment</option><option>Bipolar Disorder Treatment</option><option>Depression Treatment</option><option>Mental Health Treatment</option><option>Psychiatric Consultation & Management</option><option>Online Video Consultation</option></select></label>
+          </div>
+          <label>Additional message<textarea rows={4} value={booking.message} onChange={(e) => setBooking({...booking, message:e.target.value})} placeholder="Tell us anything important about your appointment request..." /></label>
+          <button type="submit" className="btn btn-whatsapp">Continue to WhatsApp <ArrowRight size={18} /></button>
+          <p className="form-note">This form does not store or submit your information to a website server. It prepares a WhatsApp message using the details you enter.</p>
+        </form>
+      </section>
+    </div>}
     <footer className="site-footer">
       <div className="container footer-grid">
         <div><div className="brand footer-brand"><span className="brand-mark">H</span><span><strong>Dr. Hirra Hussain</strong><small>Psychiatry & Mental Wellness</small></span></div><p>Confidential psychiatric care centered on listening, understanding and individualized treatment planning.</p></div>
